@@ -38,18 +38,17 @@ The program can be run from the command line, providing various arguments to spe
 
 Cracking a hash with a dictionary attack using a local wordlist file:
 
-python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --wordlist_file /path/to/wordlist.txt
+`python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --wordlist_file /path/to/wordlist.txt`
 
 Performing a brute force attack on a hash:
 
-python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --attack_type brute_force --max_length 6
-
+`python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --attack_type brute_force --max_length 6`
 
 ### Development and Testing
 
 The project includes a test suite to verify the functionality of its components. Run the tests using:
 
-python -m unittest test_cracker.py
+`python -m unittest test_cracker.py`
 
  ### Contributing
 
