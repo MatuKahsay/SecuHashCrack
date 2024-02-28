@@ -36,3 +36,12 @@ def evaluate_password_strength(password):
         return 'Moderate'
     else:
         return 'Strong'
+    
+def download_wordlist(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Assuming the wordlist is a text file, split it into lines
+        return response.text.splitlines()
+    else:
+        logger.error(f"Failed to download wordlist from {url}. Status code: {response.status_code}")
+        return None
