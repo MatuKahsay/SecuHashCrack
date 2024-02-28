@@ -40,3 +40,5 @@ class TestPasswordCracker(unittest.TestCase):
         self.assertTrue(check_password('5f4dcc3b5aa765d61d8327deb882cf99', 'password', 'md5'))
         self.assertFalse(check_password('5f4dcc3b5aa765d61d8327deb882cf99', 'wrongpassword', 'md5'))
 
+if __name__ == '__main__':
+    unittest.main()
