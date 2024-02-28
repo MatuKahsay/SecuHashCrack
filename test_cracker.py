@@ -27,3 +27,11 @@ class TestPasswordCracker(unittest.TestCase):
         # Test with non-existing password (should return None)
         self.assertIsNone(brute_force_attack('nonexistinghash', 'md5', max_length=3))
 
+    def test_dictionary_attack(self):
+        # Test dictionary attack with a known password list
+        known_hash = '5f4dcc3b5aa765d61d8327deb882cf99'  # Again, the MD5 hash for 'password'
+        wordlist = ['123456', 'password', 'admin']
+        self.assertEqual(dictionary_attack(known_hash, 'md5', wordlist=wordlist), 'password')
+        # Test with non-existing password in the wordlist
+        self.assertIsNone(dictionary_attack(known_hash, 'md5', wordlist=['123456', 'admin']))
+
