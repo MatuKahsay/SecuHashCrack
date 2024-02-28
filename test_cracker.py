@@ -19,3 +19,11 @@ class TestPasswordCracker(unittest.TestCase):
         self.assertEqual(download_wordlist('http://example.com'), ['password', '123456', 'admin'])
         mock_get.return_value.status_code = 404
         self.assertIsNone(download_wordlist('http://example.com'))
+
+    def test_brute_force_attack(self):
+        # Using a known hash to test brute force attack
+        known_hash = '5f4dcc3b5aa765d61d8327deb882cf99'  # This is the MD5 hash for 'password'
+        self.assertEqual(brute_force_attack(known_hash, 'md5', max_length=8), 'password')
+        # Test with non-existing password (should return None)
+        self.assertIsNone(brute_force_attack('nonexistinghash', 'md5', max_length=3))
+
