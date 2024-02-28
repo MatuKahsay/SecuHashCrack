@@ -34,7 +34,7 @@ The program can be run from the command line, providing various arguments to spe
     --attack_type: Type of attack to use (dictionary, brute_force). Default is dictionary.
     --max_length: Maximum password length for brute force attacks. Default is 8.
 
- ## Examples
+### Examples
 
 Cracking a hash with a dictionary attack using a local wordlist file:
 
@@ -43,15 +43,13 @@ python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --wordlist_file /pat
 
 Performing a brute force attack on a hash:
 
-
-```bash
 python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --attack_type brute_force --max_length 6
+
 
 ### Development and Testing
 
 The project includes a test suite to verify the functionality of its components. Run the tests using:
 
-```bash
 python -m unittest test_cracker.py
 
  ### Contributing
