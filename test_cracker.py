@@ -11,7 +11,7 @@ class TestPasswordCracker(unittest.TestCase):
         self.assertEqual(evaluate_password_strength('StrongPass1!'), 'Strong')
         self.assertEqual(evaluate_password_strength('Moderate1'), 'Moderate')
 
-        @patch('requests.get')
+    @patch('requests.get')
     def test_download_wordlist(self, mock_get):
         # Mocking requests.get to test wordlist download functionality
         mock_get.return_value.status_code = 200
@@ -34,4 +34,9 @@ class TestPasswordCracker(unittest.TestCase):
         self.assertEqual(dictionary_attack(known_hash, 'md5', wordlist=wordlist), 'password')
         # Test with non-existing password in the wordlist
         self.assertIsNone(dictionary_attack(known_hash, 'md5', wordlist=['123456', 'admin']))
+
+    def test_check_password(self):
+        # Testing the password checking function directly
+        self.assertTrue(check_password('5f4dcc3b5aa765d61d8327deb882cf99', 'password', 'md5'))
+        self.assertFalse(check_password('5f4dcc3b5aa765d61d8327deb882cf99', 'wrongpassword', 'md5'))
 
