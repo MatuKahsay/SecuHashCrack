@@ -45,3 +45,12 @@ def download_wordlist(url):
     else:
         logger.error(f"Failed to download wordlist from {url}. Status code: {response.status_code}")
         return None
+    
+def brute_force_attack(inputPass, algorithm, salt='', max_length=8):
+    chars = string.ascii_letters + string.digits + string.punctuation
+    for length in range(1, max_length + 1):
+        for password in itertools.product(chars, repeat=length):
+            password = ''.join(password)
+            if check_password(inputPass, password, algorithm, salt):
+                return password
+    return None  # If no password is found
