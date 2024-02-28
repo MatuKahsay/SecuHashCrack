@@ -54,3 +54,9 @@ def brute_force_attack(inputPass, algorithm, salt='', max_length=8):
             if check_password(inputPass, password, algorithm, salt):
                 return password
     return None  # If no password is found
+
+def dictionary_attack(inputPass, algorithm, salt='', wordlist=None):
+    for password in wordlist:
+        if check_password(inputPass, password.strip(), algorithm, salt):
+            return password.strip()
+    return None  # If no password is found
