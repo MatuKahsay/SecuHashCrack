@@ -23,7 +23,6 @@ The program can be run from the command line, providing various arguments to spe
 
 ### Basic Command Structure
 
-```
 python password_cracker.py <hash> [options]
 
 Options
