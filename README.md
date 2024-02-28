@@ -23,9 +23,9 @@ The program can be run from the command line, providing various arguments to spe
 
 ### Basic Command Structure
 
-python password_cracker.py <hash> [options]
+'python password_cracker.py <hash> [options]'
 
-Options
+### Options
 
     --algorithm: Specify the hashing algorithm (md5, sha1, sha256, sha512). Default is md5.
     --salt: Optional salt to prepend to each password attempt.
@@ -34,29 +34,23 @@ Options
     --attack_type: Type of attack to use (dictionary, brute_force). Default is dictionary.
     --max_length: Maximum password length for brute force attacks. Default is 8.
 
-Examples
+ ### Examples
 
 Cracking a hash with a dictionary attack using a local wordlist file:
 
-
-
-python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --wordlist_file /path/to/wordlist.txt
+'python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --wordlist_file /path/to/wordlist.txt'
 
 Performing a brute force attack on a hash:
 
+'python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --attack_type brute_force --max_length 6'
 
-
-python password_cracker.py 5f4dcc3b5aa765d61d8327deb882cf99 --attack_type brute_force --max_length 6
-
-Development and Testing
+### Development and Testing
 
 The project includes a test suite to verify the functionality of its components. Run the tests using:
 
+'python -m unittest test_cracker.py'
 
-
-python -m unittest test_cracker.py
-
-Contributing
+ ### Contributing
 
 Contributions to improve the project are welcome. Please follow the standard GitHub pull request process to propose changes.
 License
@@ -64,6 +58,4 @@ License
 This project is open-sourced under the MIT License. See the LICENSE file for more details.
 
 
-
-Make sure to replace the placeholder `<hash>` with the actual hash value or keep it as a placeholder to indicate that the user should insert their own hash value when using the command. The above markdown, when included in your `README.md` file, will render the code snippets in a monospaced font within a block, similar to how it was shown in the screenshot you provided.
 
