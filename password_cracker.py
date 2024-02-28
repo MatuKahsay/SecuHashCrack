@@ -71,3 +71,52 @@ def check_password(inputPass, password, algorithm, salt):
         if digest == inputPass:
             return True
     return False
+
+def main():
+    parser = argparse.ArgumentParser(description="Hash Cracker")
+    parser.add_argument("hash", help="The hash to attempt to crack")
+    parser.add_argument("--algorithm", help="The hashing algorithm (md5, sha1, sha256, sha512)", default="md5")
+    parser.add_argument("--salt", help="Optional salt to prepend to each password attempt", default="")
+    parser.add_argument("--wordlist_url", help="URL to download a wordlist from", default="")
+    parser.add_argument("--wordlist_file", help="Path to the local wordlist file", default="")
+    parser.add_argument("--attack_type", help="Type of attack to use (dictionary, brute_force)", default="dictionary")
+    parser.add_argument("--max_length", help="Maximum password length for brute force attack", type=int, default=8)
+
+    args = parser.parse_args()
+
+    wordlist = None
+    if args.wordlist_url:
+        logger.info(f"Downloading wordlist from {args.wordlist_url}")
+        wordlist = download_wordlist(args.wordlist_url)
+    elif args.wordlist_file:
+        logger.info(f"Using local wordlist file {args.wordlist_file}")
+        try:
+            with open(args.wordlist_file, "r") as file:
+                wordlist = file.readlines()
+        except FileNotFoundError:
+            logger.error(f"Could not find wordlist file at {args.wordlist_file}.")
+            return
+    elif args.attack_type == "brute_force":
+        logger.info("Using brute force attack.")
+        result = brute_force_attack(args.hash, args.algorithm, args.salt, args.max_length)
+        if result:
+            logger.info(f"Password Found: {result}")
+            return
+        else:
+            logger.info("Password not found.")
+            return
+    else:
+        logger.error("No wordlist provided for dictionary attack.")
+        return
+
+    if args.attack_type == "dictionary":
+        result = dictionary_attack(args.hash, args.algorithm, args.salt, wordlist)
+        if result:
+            logger.info(f"Password Found: {result}")
+            return
+        else:
+            logger.info("Password not found.")
+            return
+
+if __name__ == '__main__':
+    main()
