@@ -60,3 +60,14 @@ def dictionary_attack(inputPass, algorithm, salt='', wordlist=None):
         if check_password(inputPass, password.strip(), algorithm, salt):
             return password.strip()
     return None  # If no password is found
+
+def check_password(inputPass, password, algorithm, salt):
+    password_attempts += 1
+    password_with_salt = salt + password
+    encPass = password_with_salt.encode("utf-8")
+    hash_func = getattr(hashlib, algorithm, None)
+    if hash_func:
+        digest = hash_func(encPass).hexdigest()
+        if digest == inputPass:
+            return True
+    return False
